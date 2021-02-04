@@ -30,9 +30,10 @@ function App() {
               <Home />
             </Route>
             <Route path="/about" component={About}></Route>
-            <Redirect from="/about-page" to="/about"></Redirect>
-            
-            <Route path="/pagenotfound"component={PageNotFound} ></Route>
+            <Route path="/products" component={ProductList}></Route>
+            <Route path="/manageProduct/:productId" component={ManageProduct} />
+
+            <Route path="/pagenotfound"component={PageNotFound}></Route>
             <Redirect from='*' to='/pagenotfound' />
           </Switch>
         </section>
