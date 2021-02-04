@@ -6,6 +6,8 @@ import About from "./components/About";
 import Home from "./components/Home";
 import ManageProduct from "./components/ManageProduct";
 import { Product } from "./models/Product";
+import { Link, NavLink, Redirect, Route, Switch } from "react-router-dom";
+import logo from "./assets/images/logo.png";
 
 function App() {
   function getPage() {
@@ -18,10 +20,28 @@ function App() {
 
   return (
     <div>
-      <Header />
-      <div className="App">{getPage()}</div>
+      <div className="header">
+        <img src={logo} alt="logo" className="app-logo" />
+        <div className="navbar">
+          <Header>
+            <NavLink exact to="/" activeClassName="active">HOME</NavLink>
+            <NavLink to="/products" activeClassName="active">PRODUCTS</NavLink>
+            <NavLink to="/about" activeClassName="active">ABOUT</NavLink>
+          </Header>
+        </div>
+      </div>
+      <div className="App">
+        <section className="content">
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/about" component={About}></Route>
+            <Redirect from="/about-page" to="/about"></Redirect>
+          </Switch>
+        </section>
+      </div>
     </div>
   );
 }
-
 export default App;
