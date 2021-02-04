@@ -4,20 +4,13 @@ import Header from "./components/Header";
 import ProductList from "./components/ProductList";
 import About from "./components/About";
 import Home from "./components/Home";
+import PageNotFound from "./components/PageNotFound";
 import ManageProduct from "./components/ManageProduct";
 import { Product } from "./models/Product";
 import { Link, NavLink, Redirect, Route, Switch } from "react-router-dom";
 import logo from "./assets/images/logo.png";
 
 function App() {
-  function getPage() {
-    const route = window.location.pathname;
-    if (route === "/products") return <ProductList />;
-    if (route === "/about") return <About />;
-    if (route === "/manageProduct") return <ManageProduct />;
-    return <Home />;
-  }
-
   return (
     <div>
       <div className="header">
@@ -38,6 +31,7 @@ function App() {
             </Route>
             <Route path="/about" component={About}></Route>
             <Redirect from="/about-page" to="/about"></Redirect>
+            <Route exact path="*" component={PageNotFound}></Route>
           </Switch>
         </section>
       </div>
