@@ -31,7 +31,9 @@ function App() {
             </Route>
             <Route path="/about" component={About}></Route>
             <Redirect from="/about-page" to="/about"></Redirect>
-            <Route exact path="*" component={PageNotFound}></Route>
+            
+            <Route path="/pagenotfound"component={PageNotFound} ></Route>
+            <Redirect from='*' to='/pagenotfound' />
           </Switch>
         </section>
       </div>
