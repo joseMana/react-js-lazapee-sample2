@@ -15,6 +15,8 @@ import { StoreState } from "../redux/StoreState";
 import ProductRow from "./ProductRow";
 import { LoadProducts } from "../redux/actions/3. ProductActionCreators";
 
+var isFirstLoad: boolean = true;
+
 const ProductList = () => {
   const useStyles = makeStyles({
     table: {
@@ -26,15 +28,17 @@ const ProductList = () => {
     },
   });
   const classes = useStyles();
-
   const dispatch = useDispatch();
-
   const data = useSelector<StoreState>(
     (state) => state.productList
   ) as Product[];
 
   useEffect(() => {
-    LoadProducts(dispatch);
+    if (isFirstLoad) {
+      console.log('sef');
+      LoadProducts(dispatch);
+      isFirstLoad = false;
+    }
   }, []);
 
   return (
