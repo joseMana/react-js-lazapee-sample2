@@ -1,17 +1,23 @@
-import { CustomAction } from "./../actions/CustomAction";
+import { CustomAction } from "../actions/2. ProductCustomAction";
 import { StoreState, initialState } from "./../StoreState";
 import { Reducer } from "redux";
-import * as types from "../actions/ActionTypes";
+import * as types from "../actions/1. ProductActionTypes";
 
 const productReducer: Reducer<StoreState, CustomAction> = (
   state: StoreState = initialState,
   action: CustomAction
 ) => {
-  switch (action.type) {
-    case types.PRODUCT_LOAD_SUCCESS:
-      return { ...state, productList: action.payload.productList };
-    default:
-      return state;
+
+  if (action.type === types.PRODUCT_LOAD_SUCCESS || action.type === types.PRODUCT_UPDATE_SUCCESS) {
+    console.log(action.type);
+    return {
+      ...state,
+      productList: action.payload.productList
+    };
+  }
+  else{
+    console.log("else ran");
+    return state;
   }
 };
 

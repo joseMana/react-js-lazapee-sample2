@@ -11,9 +11,9 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
-import { loadProducts } from "../redux/actions/productActions";
 import { StoreState } from "../redux/StoreState";
 import ProductRow from "./ProductRow";
+import { LoadProducts } from "../redux/actions/3. ProductActionCreators";
 
 const ProductList = () => {
   const useStyles = makeStyles({
@@ -34,7 +34,7 @@ const ProductList = () => {
   ) as Product[];
 
   useEffect(() => {
-    loadProducts(dispatch);
+    LoadProducts(dispatch);
   }, []);
 
   return (
