@@ -13,7 +13,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { StoreState } from "../redux/StoreState";
 import ProductRow from "./ProductRow";
-import { LoadProducts } from "../redux/actions/3. ProductActionCreators";
+import { LoadProducts, ProductDecrementAction } from "../redux/actions/3. ProductActionCreators";
 
 var isFirstLoad: boolean = true;
 
@@ -40,7 +40,9 @@ const ProductList = () => {
       isFirstLoad = false;
     }
   }, []);
-
+  function hanldeStockDecrement(id: any) {
+    dispatch(ProductDecrementAction(id, data));
+  }
   return (
     <>
       <TableContainer component={Paper}>
@@ -62,7 +64,7 @@ const ProductList = () => {
           </TableHead>
           <TableBody>
             {data.map((row) => (
-              <ProductRow product={row} />
+              <ProductRow product={row} onBuyNowClick={hanldeStockDecrement}/>
             ))}
           </TableBody>
         </Table>

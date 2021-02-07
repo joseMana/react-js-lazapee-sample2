@@ -30,7 +30,8 @@ export const ProductDecrementAction = (_id: string, products: Product[]): Custom
   type: PRODUCT_DECREMENT_SUCCESS,
   payload: {
     productList: products
-  }
+  },
+  id: _id
 });
 export const UpdateProductAction = (value: Product[]): CustomAction => ({
   type: PRODUCT_UPDATE_SUCCESS,
